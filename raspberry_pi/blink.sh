@@ -14,7 +14,7 @@ blink signal to the desired output.
 
 usage: $0 GPIO_pin number_of_blinks speed_in_secs
 
-Example: $0 5 10 0.3
+Example: $0 4 10 0.3
 
   GPIO_pin: Could be 4, 17, 18, 21, 22, 23, 24 or 25
 
