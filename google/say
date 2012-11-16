@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# This simple script allows you to listen the entered phrase in the desired
+# language. It uses the google translate web page to do it
+
+player="/usr/bin/mpg123"
+
+if [ ! -f $player ]; then
+  printf "Error: %s not found\n" $(basename $player)
+  exit 1
+fi
+
+function usage {
+echo "usage: $(basename $0) <language> <"The phrase you want to listen to">"
+echo "       language: en, es, fr, ..."
+echo ""
+echo "Example: say en \"You are the best\""
+echo ""
+}
+
+if [ $# -ne 2 ]
+  then
+  usage
+  else wget -q -O- -U Mozilla "http://translate.google.com/translate_tts?q=$2&tl=$1"|$player -q -
+fi
