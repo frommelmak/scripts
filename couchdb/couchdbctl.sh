@@ -5,10 +5,11 @@
 
 host='localhost'
 port='5984'
-user='root'
+user=''
 pass=''
-dbs='db1 db2'
 rev='2'
+
+dbs=$(curl -s http://$user:$pass@$host:$port/_all_dbs |sed 's/[]|\[|\"|\,]/ /g')
 
 case $1 in 
 -compact|-c)
@@ -27,16 +28,20 @@ case $1 in
 -info|-i)
   for db in $dbs; do
   echo "$db"
-  curl -s http://$host:$port/$db | python -mjson.tool
+  curl -s http://$host:$port/$db | python -m json.tool
   done
   ;;
 -settings|-s)
-  curl -s http://$user:$pass@$host:$port/_config | python -mjson.tool
+  curl -s http://$user:$pass@$host:$port/_config | python -m json.tool
   ;;
 -version|-v)
-  curl -s http://$user:$pass@$host:$port
+  curl -s http://$user:$pass@$host:$port | python -m json.tool
+  ;;
+-all_dbs|-a)
+  curl -s http://$user:$pass@$host:$port/_all_dbs | python -m json.tool
   ;;
 *)
-  echo "USAGE: $0 [-compact|-c] | [-tasks|-t] | [-info|-i] | [-settings|-s] | [-version|-v]"
+  echo "USAGE: $0 [-compact|-c] | [-tasks|-t] | [-info|-i] | [-settings|-s] | [-version|-v] | \
+                      [-all_dbs|-a]"
   ;;
 esac
