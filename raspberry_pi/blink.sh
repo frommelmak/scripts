@@ -48,9 +48,13 @@ LIMIT=$(expr $2 '*' 2)
 
 for ((n=1; n <= LIMIT ; n++))
 do
- echo $(expr $n % 2) > /sys/class/gpio/gpio$1/value
+ out=$(expr $n % 2)
+ echo $out > /sys/class/gpio/gpio$1/value
+ printf " Positive Intervals: $(expr $(expr $n + 1) / 2) Current Output: $out\r"
  sleep $3 
 done
+
+echo -e "\n done!"
 
 #GPIO clean up 
 echo "$1" > /sys/class/gpio/unexport
