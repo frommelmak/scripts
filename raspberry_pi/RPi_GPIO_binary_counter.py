@@ -64,5 +64,5 @@ if __name__=="__main__":
       speed=float(argv[2])
     except:
       speed=DEFAULT_SPEED
-    print "c: %d s:%f" % (n,speed)
+    print "Settings: counter: %d Speed : %f" % (n,speed)
     binary_counter(n, speed)
