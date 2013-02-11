@@ -50,11 +50,13 @@ def delete_old_entries(server, db, age, ts, remove):
             untouched = untouched + 1
     return {'total': total, 'deleted': deleted, 'untouched': untouched}
 
-def compact (server, db):
+
+def compact(server, db):
     server = Server(server)
     db = server[db]
     result = db.compact()
     return result
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -68,14 +70,15 @@ def main():
     parser.add_argument('-r', '--remove', action='store_true',
             help="Delete older documents")
     parser.add_argument('-c', '--compact', action='store_true',
-            help="Compact database. Only if documents were deleted. Requires -r.")
+            help="Compact database if documents were deleted. Requires -r.")
     args = parser.parse_args()
     result = delete_old_entries(args.server, args.db, int(args.age), args.ts,
             args.remove)
     print ("Documents processed: %s, Deleted: %s, Untouched: %s"
             % (result['total'], result['deleted'], result['untouched']))
     if compact and args.remove and result['deleted'] > 0:
-       result = compact(args.server, args.db)
-       print ("Compact: %s") % result
+        result = compact(args.server, args.db)
+        print ("Compact: %s") % result
+
 if __name__ == '__main__':
     sys.exit(main())
