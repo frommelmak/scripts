@@ -24,8 +24,6 @@ def print_tweet(tweet):
 
 
 def bind(user, password, words, lang, n, t):
-
-    words = [words, ]
     count = 0
     try:
         with tweetstream.FilterStream(user, password, track=words) as stream:
@@ -60,12 +58,12 @@ def main():
     parser = argparse.ArgumentParser(description='Command line tool for live Twitter search')
     parser.add_argument('-u', '--user', required=True, help="Tweeter user name")
     parser.add_argument('-p', '--password', required=True, help="Tweeter password")
-    parser.add_argument('word', help="The word you are looking for about")
+    parser.add_argument('keywords', nargs='+', help="The keywords to track")
     parser.add_argument('-l', '--lang', nargs='+', default='all', help="The language for the tweets you are looking for")
     parser.add_argument('-t', '--time', type=int, default=60, help="Max execution time in seconds")
     parser.add_argument('-n', '--number', type=int, default=10, help="Number of tweets to retrieve")
     arg = parser.parse_args()
-    stats = bind(arg.user, arg.password, arg.word, arg.lang, arg.number, arg.time)
+    stats = bind(arg.user, arg.password, arg.keywords, arg.lang, arg.number, arg.time)
     print "Number of tweets: %d, Duration: %.2f" % (stats[0], stats[1])
 if __name__ == "__main__":
     main()
