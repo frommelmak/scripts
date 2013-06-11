@@ -2,7 +2,7 @@
 #
 # Command line tool for live Twitter search
 #
-# Copyright (x) 2013 Marcos Martinez - <frommelmak@gmail.com>
+# Copyright (c) 2013 Marcos Martinez - <frommelmak@gmail.com>
 #
 
 import argparse
