@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+#
+# Command line tool for live Twitter search
+#
+# Copyright (x) 2013 Marcos Martinez - <frommelmak@gmail.com>
+#
+
 import argparse
 import time
 import tweetstream
