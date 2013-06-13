@@ -56,8 +56,8 @@ def bind(user, password, words, lang, n, t):
 
 def main():
     parser = argparse.ArgumentParser(description='Command line tool for live Twitter search')
-    parser.add_argument('-u', '--user', required=True, help="Tweeter user name")
-    parser.add_argument('-p', '--password', required=True, help="Tweeter password")
+    parser.add_argument('-u', '--user', required=True, help="Twitter user name")
+    parser.add_argument('-p', '--password', required=True, help="Twitter password")
     parser.add_argument('keywords', nargs='+', help="The keywords to track")
     parser.add_argument('-l', '--lang', nargs='+', default='all', help="The language for the tweets you are looking for")
     parser.add_argument('-t', '--time', type=int, default=60, help="Max execution time in seconds")
