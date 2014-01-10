@@ -1,6 +1,6 @@
 #/bin/bash
 
-# This script is useful to help to locate LAN ports in network switches.
+# This script is useful to help you to locate LAN ports in network switches.
 # Connect a laptop into the LAN cable you want to locate and run this script.
 # Then, look for a blinking link status led in the switch side.
 
